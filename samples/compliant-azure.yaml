@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: inference-api
+  namespace: ai-platform
+  annotations:
+    azure.workload.identity/client-id: 11111111-1111-1111-1111-111111111111
+automountServiceAccountToken: false
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inference-api
+  namespace: ai-platform
+spec:
+  selector:
+    matchLabels:
+      app: inference-api
+  template:
+    metadata:
+      labels:
+        app: inference-api
+        azure.workload.identity/use: "true"
+    spec:
+      serviceAccountName: inference-api
+      automountServiceAccountToken: false
+      containers:
+        - name: api
+          image: ghcr.io/example/inference-api:1.0.0

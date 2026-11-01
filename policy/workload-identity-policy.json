@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "decisions": ["PASS", "REVIEW", "BLOCK"],
+  "approved_providers": ["aws", "gcp", "azure"],
+  "maximum_projected_token_seconds": 3600,
+  "rules": ["WI001", "WI002", "WI003", "WI004", "WI005", "WI006", "WI007", "WI008", "WI009"],
+  "ai_authority": "advisory-only"
+}
